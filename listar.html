@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Listar Usuários</title>
+</head>
+<body>
+	<?php include_once('listar.php');?>
+	<table border="1px">
+		
+		<tr>
+			<td>Telefone</td>
+			<td>Nome</td>
+			<td>E-mail</td>
+			<td>Atualizar</td>
+			<td>Excluir</td>
+		</tr>
+		<?php
+		  include_once('conexao.php');
+		  $sql = "SELECT * FROM USER";
+		  $r = mysqli_query($con,$sql);
+
+		  if ($r) {
+		  	while ($result = mysqli_fetch_array($r)) {?>
+
+		  		<tr>
+		  			<td> <?php echo $result['n']; ?> </td>
+		  			<td> <?php echo $result['nome']; ?> </td>
+		  			<td> <?php echo $result['mail']; ?> </td>
+		  			<td> <a href="atualisar.php" ?numero = <?php echo $result['numero'] ?> > <img src="atu.png" width="20" height="20"></a> Atualizar</td>
+		  			<td> <a href="excluir.php"><img src="exc.png" width="20" height="20"></a> </td>
+		  		</tr>
+		  		<?php 
+		  	}
+		  }
+		  ?>
+
+	</table>
+
+</body>
+</html>
